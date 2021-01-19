@@ -11,7 +11,7 @@ const Home = () => {
 
   const fetchData = async ()=>{
     console.log("fetchData")
-    let res = await axios.get("/.netlify/functions/posts");
+    let res = await axios.get("https://cors-anywhere.herokuapp.com/dummytiktok.netlify.app/.netlify/functions/posts");
     setPosts(res.data)
     console.log(posts)
   }
@@ -20,7 +20,7 @@ const Home = () => {
     let toggledValue = user.is_followed?false : true
     let data = {is_followed:toggledValue}
 
-    await axios.put('/.netlify/functions/edit', {userId: user.id, data:data})
+    await axios.put('https://cors-anywhere.herokuapp.com/dummytiktok.netlify.app/.netlify/functions/edit', {userId: user.id, data:data})
     .then(res => console.log(res))
     .catch(err => console.error("error", err))
     .then(()=> fetchData())
